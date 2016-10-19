@@ -17,62 +17,32 @@
 	 *   +----------------------------------------------------------------------+
 	 */
 
-	/**
-	 * Namespace imports
-	 */
-	use PHPDeps\CommandlineArguments;
-
 
 	/**
-	 * Backend includes
+	 * @todo 	Docblock
 	 */
-	require(__DIR__ . '/includes/functions.php');
-	require(__DIR__ . '/includes/version.php');
+	const PHPDEPS_VERSION		= '0.1.0';
 
 
 	/**
-	 * Register handlers
+	 * @todo 	Docblock
 	 */
-	set_exception_handler('phpdeps_exception_handler');
-	spl_autoload_register('phpdeps_autoload_handler');
+	const PHPDEPS_VERSION_MAJOR	= 0;
+
 
 	/**
-	 * This is intended to only ever be executed in CLI
+	 * @todo 	Docblock
 	 */
-	if(PHP_SAPI != 'cli')
-	{
-		throw new Exception('This program should only be used in CLI mode');
-	}
+	const PHPDEPS_VERSION_MINOR	= 1.0;
+
 
 	/**
-	 * Check for Windows (duh)
+	 * @todo 	Docblock
 	 */
-	if(!defined('PHP_WINDOWS_VERSION_MAJOR'))
-	{
-		throw new Exception('This is not the right tool for you; Upgrade to Windows today!');
-	}
+	const PHPDEPS_VERSION_RELEASE	= 0;
 
 	/**
-	 * Check for PHP extensions we need
+	 * @todo	Docblock
 	 */
-	foreach(['json', 'zip'] as $ext)
-	{
-		if(!extension_loaded($ext))
-		{
-			throw new Exception('The ' . $ext . ' extension for PHP is required');
-		}
-	}
-
-	/**
-	 * Look for php_version.h, we must be in the root of php-src
-	 */
-	if(!is_file('main/php_version.h'))
-	{
-		throw new Exception('php_version.h was not found; Try run this again from the root of the php-src directory');
-	}
-
-	/**
-	 * Load the command line arguments class
-	 */
-	$cli = new CommandlineArguments;
+	const PHPDEPS_VERSION_DEV	= true;
 ?>

@@ -1,0 +1,12 @@
+{
+	"options":
+	{
+		"arch": 	"auto", 
+		"vcversion": 	"auto"
+	}, 
+
+	"extensions":
+	{
+		"pecl":		false
+	}
+}

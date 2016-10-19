@@ -1,0 +1,1 @@
+php -f %~dp0php-deps.php -- %*

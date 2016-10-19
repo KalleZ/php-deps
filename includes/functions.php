@@ -17,62 +17,43 @@
 	 *   +----------------------------------------------------------------------+
 	 */
 
-	/**
-	 * Namespace imports
-	 */
-	use PHPDeps\CommandlineArguments;
-
 
 	/**
-	 * Backend includes
+	 * Exception handler
+	 *
+	 * @param	\Throwable				The exception to handle
+	 * @return	void					No value is returned
+	 *
+	 * @note	Halts the execution
 	 */
-	require(__DIR__ . '/includes/functions.php');
-	require(__DIR__ . '/includes/version.php');
-
-
-	/**
-	 * Register handlers
-	 */
-	set_exception_handler('phpdeps_exception_handler');
-	spl_autoload_register('phpdeps_autoload_handler');
-
-	/**
-	 * This is intended to only ever be executed in CLI
-	 */
-	if(PHP_SAPI != 'cli')
+	function phpdeps_exception_handler(Throwable $e)
 	{
-		throw new Exception('This program should only be used in CLI mode');
+		printf('PHP Build Dependencies for Windows (v%1$s)%2$s%2$sError:%2$s%3$s%2$s', PHPDEPS_VERSION, PHP_EOL, $e->getMessage());
+		exit(-1);
 	}
 
 	/**
-	 * Check for Windows (duh)
+	 * Autoload handler
+	 *
+	 * @param	string					The class/interface/trait to load
+	 * @return	void					No value is returned
+	 *
+	 * @throws	\Exception				Throws an exception if the object could not be found
 	 */
-	if(!defined('PHP_WINDOWS_VERSION_MAJOR'))
+	function phpdeps_autoload_handler($object)
 	{
-		throw new Exception('This is not the right tool for you; Upgrade to Windows today!');
-	}
+		$path = __DIR__ . '\library\\' . $object . '.php';
 
-	/**
-	 * Check for PHP extensions we need
-	 */
-	foreach(['json', 'zip'] as $ext)
-	{
-		if(!extension_loaded($ext))
+		if(!is_file($path))
 		{
-			throw new Exception('The ' . $ext . ' extension for PHP is required');
+			throw new Exception('Could not find file for object: ' . $object);
+		}
+
+		require($path);
+
+		if(!class_exists($object) && !interface_exists($object) && !trait_exists($object))
+		{
+			throw new Exception('Could not find object implementation in file: ' . $path);
 		}
 	}
-
-	/**
-	 * Look for php_version.h, we must be in the root of php-src
-	 */
-	if(!is_file('main/php_version.h'))
-	{
-		throw new Exception('php_version.h was not found; Try run this again from the root of the php-src directory');
-	}
-
-	/**
-	 * Load the command line arguments class
-	 */
-	$cli = new CommandlineArguments;
 ?>
