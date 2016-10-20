@@ -19,37 +19,39 @@
 
 
 	/**
-	 * @todo 	Docblock
+	 * Strict types
 	 */
-	const PHPDEPS_VERSION		= '1.0.0';
+	declare(strict_types = 1);
+
 
 	/**
 	 * @todo	Docblock
 	 */
-	const PHPDEPS_VERSION_FULL	= '1.0.0-dev';
+	namespace PHPDeps;
 
-	/**
-	 * @todo 	Docblock
-	 */
-	const PHPDEPS_VERSION_MAJOR	= 1;
-
-	/**
-	 * @todo 	Docblock
-	 */
-	const PHPDEPS_VERSION_MINOR	= 0;
-
-	/**
-	 * @todo 	Docblock
-	 */
-	const PHPDEPS_VERSION_RELEASE	= 0;
 
 	/**
 	 * @todo	Docblock
 	 */
-	const PHPDEPS_VERSION_ID	= 10000;
+	class Commands
+	{
+		/**
+		 * @todo	Docblock
+		 * @todo	Implement
+		 */
+		public static function help(array $parameters = NULL)
+		{
+		}
 
-	/**
-	 * @todo	Docblock
-	 */
-	const PHPDEPS_VERSION_DEV	= true;
+		/**
+		 * Prints the version number
+		 *
+		 * @param	array				The parameters sent to this command (not used)
+		 * @return	void				No value is returned
+		 */
+		public static function version(array $parameters = NULL)
+		{
+			echo('Version: ' . PHPDEPS_VERSION_FULL);
+		}
+	}
 ?>

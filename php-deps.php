@@ -68,11 +68,13 @@
 	 */
 	if(!is_file('main/php_version.h'))
 	{
-		throw new Exception('php_version.h was not found; Try run this again from the root of the php-src directory');
+		throw new Exception('php_version.h was not found; Try run this again from the root of php-src');
 	}
 
 	/**
 	 * Load the command line arguments class
 	 */
 	$cli = new CommandlineArguments;
+
+	$cli->invoke();
 ?>

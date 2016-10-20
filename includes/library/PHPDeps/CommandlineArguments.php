@@ -25,7 +25,7 @@
 
 
 	/**
-	 * Namespace
+	 * @todo	Docblock
 	 */
 	namespace PHPDeps;
 
@@ -54,7 +54,10 @@
 		 *
 		 * @var		callable[]
 		 */
-		protected $handlers		= [];
+		protected $handlers		= [
+							'help'		=> ['\PHPDeps\Commands', 'help'], 
+							'version'	=> ['\PHPDeps\Commands', 'version']
+							];
 
 
 		/**

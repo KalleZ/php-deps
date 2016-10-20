@@ -28,7 +28,8 @@
 	 */
 	function phpdeps_exception_handler(Throwable $e)
 	{
-		printf('PHP Build Dependencies for Windows (v%1$s)%2$s%2$sError:%2$s%3$s%2$s', PHPDEPS_VERSION, PHP_EOL, $e->getMessage());
+		printf('Error:%1$s%2$s%1$s', PHP_EOL, $e->getMessage());
+
 		exit(-1);
 	}
 

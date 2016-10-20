@@ -2,7 +2,8 @@
 	"options":
 	{
 		"arch": 	"auto", 
-		"vcversion": 	"auto"
+		"vcversion": 	"auto", 
+		"system":	"old"
 	}, 
 
 	"extensions":
